@@ -18,9 +18,10 @@ def second_product() -> Product:
 def first_category() -> Category:
     return Category(
         name="Смартфоны",
-        description="""
-        Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни
-        """,
+        description=(
+            "Смартфоны, как средство не только коммуникации,\n"
+            "но и получение дополнительных функций для удобства жизни"
+        ),
         products=[
             {
                 "name": "Samsung Galaxy C23 Ultra",
