@@ -35,3 +35,12 @@ def second_category() -> Category:
         """,
         products=[],
     )
+
+
+@pytest.fixture
+def toys_category() -> Category:
+    product1 = Product("Тетрис", "Электронная игрушка", 300.0, 5)
+    product2 = Product("Тамагочи", "Электронная игрушка", 200.0, 10)
+    product3 = Product("Кубик-рубика", "Аналоговая игрушка", 400.0, 8)
+    category = Category("Игрушки", "Категория с игрушками", [product1, product2, product3])
+    return category
