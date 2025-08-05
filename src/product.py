@@ -13,7 +13,9 @@ class Product:
         return f"{self.name}, {self.__price} Остаток: {self.quantity} шт."
 
     def __add__(self, other: "Product") -> float:
-        return float(self.__price * self.quantity + other.__price * other.quantity)
+        if type(self) is type(other):
+            return float(self.__price * self.quantity + other.__price * other.quantity)
+        raise TypeError(f"Нельзя сложить объекты разных классов: {type(self).__name__} и {type(other).__name__}")
 
     @property
     def price(self) -> float:
@@ -48,4 +50,52 @@ class Product:
             description=new_product.get("description", ""),
             price=new_product.get("price", 0),
             quantity=new_product.get("quantity", 0),
+        )
+
+
+class Smartphone(Product):
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __str__(self) -> str:
+        return (
+            f"{self.name}, {self.description}, {self.efficiency}, {self.model}, {self.memory}, "
+            f"{self.color}, {self.price}, Остаток: {self.quantity} шт."
+        )
+
+
+class LawnGrass(Product):
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ) -> None:
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __str__(self) -> str:
+        return (
+            f"{self.name}, {self.description}, {self.country}, {self.germination_period}, {self.color}, "
+            f"{self.price}, Остаток: {self.quantity} шт."
         )
