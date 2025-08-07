@@ -1,6 +1,7 @@
 import pytest
 from _pytest.monkeypatch import MonkeyPatch
 
+from src.category import Category
 from src.product import LawnGrass, Product, Smartphone
 
 
@@ -55,7 +56,7 @@ def test_print_product() -> None:
     assert str(smartphone2) == "Iphone 15, 512GB, Gray space, 98.2, 15, 512, Gray space, 210000.0, Остаток: 8 шт."
 
 
-def test_add_new_category_product(grass_category: LawnGrass, smartphone_category: Smartphone) -> None:
+def test_add_new_category_product(grass_category: Category, smartphone_category: Category) -> None:
     """
     Тест на сложение новых продуктов в новых категориях
     """
