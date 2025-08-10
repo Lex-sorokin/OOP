@@ -1,5 +1,6 @@
 import pytest
 
+from src.base_product import BaseProduct
 from src.category import Category, Enumeration
 from src.product import Product
 
@@ -69,3 +70,8 @@ def test_enumeration(toys_category: Category) -> None:
         next(enumeration)
     with pytest.raises(StopIteration):
         next(enumeration)
+
+
+def test_middle_price() -> None:
+    category12 = Category('Игрушки', 'Для всех', [])
+    assert category12.middle_price() == 0

@@ -2,6 +2,7 @@ class PrintMixin:
     """
     Класс-миксин
     """
+
     name: str
     description: str
     price: float

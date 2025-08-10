@@ -5,7 +5,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: list) -> None:
+    def __init__(self, name: str, description: str, products: list[Product]) -> None:
         self.name = name
         self.description = description
         self.__products = products if products is not None else []
@@ -17,9 +17,7 @@ class Category:
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
     def add_product(self, new_product: Product) -> None:
-        """
-        Добавляет продукт и увеличивает счетчик
-        """
+        """Добавляет продукт и увеличивает счетчик"""
         if not isinstance(new_product, Product):  # ДОБАВЛЕНО: проверка на тип
             raise TypeError("Можно добавить только объект класса Product или его наследника")
         self.__products.append(new_product)
@@ -27,6 +25,7 @@ class Category:
 
     @property
     def products(self) -> str:
+        """Сеттер для получения информации о продукте"""
         products_str = ""
         for product in self.__products:
             products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
@@ -34,7 +33,17 @@ class Category:
 
     @property
     def get_products(self) -> list[Product]:
+        """Геттер для получения списка продуктов"""
         return self.__products
+
+    def middle_price(self) -> float:
+        """Рассчитывает среднюю стоимость товаров в категории"""
+        try:
+            all_price = sum([product.price for product in self.__products])
+            result = all_price / Category.product_count
+            return round(result, 2)
+        except ZeroDivisionError:
+            return 0.0
 
 
 class Enumeration:
